@@ -5,19 +5,18 @@ pyDirectoryWalker - A generator for traversing directories by Python 3.
 
 ### Usage
 
-Use `dir_walker.walk(...)` to get the generator, which contains two overloads:
+Use `dir_walker.walk(...)`, which contains two overloads, to create a generator:
 
 ```python
 @overload
-def walk(path: Union[str, bytes], filter: Optional[Callable[[Union[str, bytes]], bool]] = None) -> Generator[Union[str, bytes], None, None]:
+def walk(paths: Union[List[str], List[bytes]], filter: Optional[Callable[[Union[str, bytes]], bool]] = None) -> Generator[Union[str, bytes], None, None]:
     ...
-
 @overload
-def walk(paths: Union[list[str], list[bytes]], filter: Optional[Callable[[Union[str, bytes]], bool]] = None) -> Generator[Union[str, bytes], None, None]:
+def walk(path: Union[str, bytes], filter: Optional[Callable[[Union[str, bytes]], bool]] = None) -> Generator[Union[str, bytes], None, None]:
     ...
 ```
 
-The first argument is supposed to be a path-like array (e.g. `str` and `bytes`) or a list of path-like object. The second argument is supposed to be `None` or a `Callable` object (e.g. function), which shall returns `true` when the input path is needed.
+The first argument is supposed to be a path-like object (e.g. `str` and `bytes` etc.) or a list (e.g. `tuple` and `list`) of path-like object. The second argument is supposed to be `None` or a `Callable` object (e.g. function), which shall returns `true` when a input path is needed.
 
 A example is provided in code, follows `if __name__ == '__main__':`
 
@@ -30,7 +29,7 @@ if __name__ == '__main__':
         print(repr(path))
 ```
 
-The code will print all files under current folder and subfolder(s).
+The code will print all ".py" files under current folder and subfolder(s).
 
 ### Other
 

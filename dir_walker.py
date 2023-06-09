@@ -29,14 +29,14 @@ def walk_path(path: Union[str, bytes], filter: Optional[Callable[[Union[str, byt
 
 
 @overload
-def walk(paths: Union[list[str], list[bytes]], filter: Optional[Callable[[Union[str, bytes]], bool]] = None) -> Generator[Union[str, bytes], None, None]:
+def walk(paths: Union[List[str], List[bytes]], filter: Optional[Callable[[Union[str, bytes]], bool]] = None) -> Generator[Union[str, bytes], None, None]:
     ...
 
 @overload
 def walk(path: Union[str, bytes], filter: Optional[Callable[[Union[str, bytes]], bool]] = None) -> Generator[Union[str, bytes], None, None]:
     ...
 
-def walk(paths: Union[list[str], list[bytes], str, bytes], filter: Optional[Callable[[Union[str, bytes]], bool]] = None):
+def walk(paths: Union[List[str], List[bytes], str, bytes], filter: Optional[Callable[[Union[str, bytes]], bool]] = None):
     if isinstance(paths, (list, tuple)):
         for path in paths:
             for filepath in walk_path(path, filter):
